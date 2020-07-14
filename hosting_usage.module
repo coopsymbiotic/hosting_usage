@@ -30,6 +30,7 @@ function hosting_usage_page() {
     'CiviContribute' => ['data' => t('Contributions')],
     'CiviMember' => ['data' => t('Memberships')],
     'CiviMail' => ['data' => t('Mailings')],
+    'CiviSms' => ['data' => t('SMS')],
     'CiviCase' => ['data' => t('Cases')],
     'CiviEvent' => ['data' => t('Events')],
     'CiviParticipant' => ['data' => t('Participants')],
