@@ -37,6 +37,7 @@ function hosting_usage_page() {
     'CiviPaymentProcessors' => ['data' => t('Payment Processors')],
     'CiviLanguages' => ['data' => t('Languages')],
     'LastLogin' => ['data' => t('Last Login')],
+    'Created' => ['data' => t('Created')],
   ];
 
   if (!file_exists('/var/log/aegir/usage.log')) {
@@ -68,6 +69,12 @@ function hosting_usage_page() {
     }
 
     $rows[$site][$col] = $val;
+  }
+
+  // Add the creation date
+  foreach ($rows as $site => $data) {
+    $node = hosting_get_site_by_url($site);
+    $rows[$site]['created'] = date('Y-m-d', $node->created);
   }
 
   $render['usage'] = [
