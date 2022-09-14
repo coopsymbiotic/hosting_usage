@@ -11,6 +11,11 @@ function hosting_usage_menu() {
     'type' => MENU_CALLBACK,
     'access arguments' => ['administer hosting'],
   ];
+  $items['hosting/usage/live'] = [
+    'page callback' => 'hosting_usage_live_page',
+    'type' => MENU_CALLBACK,
+    'access arguments' => ['administer hosting'],
+  ];
 
   return $items;
 }
@@ -77,4 +82,16 @@ function hosting_usage_page() {
   ];
 
   return $render;
+}
+
+/**
+ * Page callback to display live stats.
+ */
+function hosting_usage_live_page() {
+  exec('sudo /usr/local/bin/goaccess-aegir', $out);
+  if (file_exists('private://goaccess-report.html')) {
+    echo file_get_contents('private://goaccess-report.html');
+    return;
+  }
+  echo "Error generating the report - check the sudo rules - " . print_r($out, 1);
 }
