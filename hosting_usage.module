@@ -89,6 +89,9 @@ function hosting_usage_page() {
     '#rows' => $rows,
   ];
 
+  // Override the width settings so that it is easier to read, assuming other blocks are hidden
+  drupal_add_css('#page > .limiter, div#main {width: 100% !important; float: none !important;}', 'inline');
+
   return $render;
 }
 
